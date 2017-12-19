@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SOAPmarketplace.iml" filepath="$PROJECT_DIR$/.idea/modules/SOAPmarketplace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SOAPmarketplace_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SOAPmarketplace_main.iml" group="SOAPmarketplace" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SOAPmarketplace_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SOAPmarketplace_test.iml" group="SOAPmarketplace" />
+    </modules>
+  </component>
+</project>
