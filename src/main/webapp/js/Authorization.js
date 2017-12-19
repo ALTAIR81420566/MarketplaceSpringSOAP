@@ -49,22 +49,13 @@ $(document).ready(function () {
                 return true;
             }
         },
-        'authorizationCallback': function (data) {
-            $('#errorText').text("error");
-            if (data.resp == "success") {
-                window.location.href = '/general';
-            } else {
-                $('.errorText').text(data.resp);
-            }
-        },
         'processSuccess': function (data, status, req) {
-            $('#errorText').text("errorSucc");
-            if (status == "success")
-                $("#soap").text($(req.responseXML).find("capital").text());
-            $('#errorText').text("sucses");
+            $(".errorText").text($(req.responseXML).find("response").text());
+            $.cookie("login", $('#login').val());
+            window.location.href = '/general';
         },
         'processError': function (data, status, req) {
-            $('#errorText').text("errorErrr");
+            $('.errorText').text("errorErrr");
             alert(req.responseText + " dd" + status);
         }
     };
@@ -74,19 +65,22 @@ $(document).ready(function () {
         e.preventDefault();
         $('#soap').text("ok");
     });
-    $('#soapBtn').on('click', function (e) {
+
+
+    $('#signInBtn').on('click', function (e) {
         e.preventDefault();
         var wsUrl = "http://localhost:8090/ws";
 
         var soapRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"\
                                              				  xmlns:gs="SOAPMarketplace">\
-                                                <soapenv:Header/>\
-                                                  <soapenv:Body>\
-                                                    <gs:getCountryRequest>\
-                                                      <gs:name>Spain</gs:name>\
-                                                    </gs:getCountryRequest>\
-                                                   </soapenv:Body>\
-                                               </soapenv:Envelope>';
+            <soapenv:Header/>\
+              <soapenv:Body>\
+                <gs:authorizationRequest>\
+                  <gs:login>' + $('#login').val() +'</gs:login>\
+                  <gs:password>' + $('#password').val() + '</gs:password>\
+                </gs:authorizationRequest>\
+               </soapenv:Body>\
+           </soapenv:Envelope>';
 
         $.ajax({
             type: "POST",
@@ -97,8 +91,6 @@ $(document).ready(function () {
             success: jVal.processSuccess,
             error: jVal.processError
         });
-
-        $('#errorText').text("hz");
     });
 
 });
