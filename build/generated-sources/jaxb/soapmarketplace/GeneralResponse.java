@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="products" type="{SOAPMarketplace}listOfNode"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name"
+    "products"
 })
-@XmlRootElement(name = "getCountryRequest")
-public class GetCountryRequest {
+@XmlRootElement(name = "generalResponse")
+public class GeneralResponse {
 
     @XmlElement(required = true)
-    protected String name;
+    protected ListOfNode products;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the products property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ListOfNode }
      *     
      */
-    public String getName() {
-        return name;
+    public ListOfNode getProducts() {
+        return products;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the products property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ListOfNode }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setProducts(ListOfNode value) {
+        this.products = value;
     }
 
 }

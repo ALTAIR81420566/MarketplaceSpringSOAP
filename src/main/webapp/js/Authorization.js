@@ -50,9 +50,10 @@ $(document).ready(function () {
             }
         },
         'processSuccess': function (data, status, req) {
-            $(".errorText").text($(req.responseXML).find("response").text());
             $.cookie("login", $('#login').val());
             window.location.href = '/general';
+            $(".errorText").text($(req.responseXML).find("response").text());
+
         },
         'processError': function (data, status, req) {
             $('.errorText').text("errorErrr");
@@ -81,6 +82,16 @@ $(document).ready(function () {
                 </gs:authorizationRequest>\
                </soapenv:Body>\
            </soapenv:Envelope>';
+
+    //     var soapRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"\
+    //                                          				  xmlns:gs="SOAPMarketplace">\
+    // <soapenv:Header/>\
+    //     <soapenv:Body>\
+    //     <gs:getCountryRequest>\
+    //     <gs:name>Spain</gs:name>\
+    //     </gs:getCountryRequest>\
+    //     </soapenv:Body>\
+    //     </soapenv:Envelope>';
 
         $.ajax({
             type: "POST",

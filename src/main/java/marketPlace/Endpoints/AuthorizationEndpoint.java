@@ -1,5 +1,6 @@
 package marketPlace.Endpoints;
 
+
 import marketPlace.model.User;
 import marketPlace.repositories.UserRepo;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -23,7 +24,6 @@ public class AuthorizationEndpoint {
     @ResponsePayload
     public AuthorizationResponse authorization(@RequestPayload AuthorizationRequest request) {
         AuthorizationResponse response = new AuthorizationResponse();
-        String d = request.getLogin();
         User user = userRepo.findByLogin(request.getLogin());
         if (user != null && user.getPassword().equals(request.getPassword())){
             response.setResponse("success");

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,8 @@
     <title>Authorization</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,39 +20,41 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
-    <div class="row col-md-offset-2">
+    <div class ="container">
+        <div class="row col-md-offset-2">
 
-        <div class="form-group">
-            <td>Login:</td>
-            <td><input path="login" class="form-control" id="login"/></td>
-        </div>
-        <div class="form-group">
-            <td>Password:</td>
-            <td><input path="password" class="form-control" id="password"/></td>
-            <p class="errorText"></p>
-        </div>
-        <div class="col-2 col-md-1 ">
-            <button type="submit" class="btn btn-success" value="Save Changes" id="signInBtn">Sign in</button>
-        </div>
+                 <div class="form-group">
+                          <td>Login:</td>
+                          <td><input path="login"  class="form-control" id="login"/></td>
+                 </div>
+                 <div class="form-group">
+                          <td>Password:</td>
+                          <td><input path="password" class="form-control" id="password"/></td>
+                          <p class = "errorText"></p>
+                 </div>
+                 <div class="col-2 col-md-1 ">
+                    <button type="submit" class="btn btn-success" value="Save Changes" id="signInBtn">Sign in</button>
+                 </div>
 
 
-        <div class="col-2 col-md-2 ">
-            <form method="POST" commandName="user" action="/authorization/guest" class="form-group">
-                <button type="submit" class="btn btn btn-primary">Enter as guest</button>
-            </form>
-        </div>
-        <div class="col-2 col-md-1 ">
-            <button type="submit" class="btn btn btn-primary" id="onRegisterPage">Register</button>
+            <div class="col-2 col-md-2 ">
+                 <form method="POST" commandName="user" action="/authorization/guest" class="form-group">
+                    <button type="submit" class="btn btn btn-primary">Enter as guest</button>
+                 </form>
+            </div>
+            <div class="col-2 col-md-1 ">
+                    <button type="submit" class="btn btn btn-primary"  id="onRegisterPage">Register</button>
+            </div>
         </div>
     </div>
-</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
 <script src="js/bootstrap.js"></script>
 <script src="js/Authorization.js"></script>
 

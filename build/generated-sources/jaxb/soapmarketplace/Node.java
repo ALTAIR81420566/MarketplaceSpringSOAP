@@ -11,22 +11,21 @@ package soapmarketplace;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for node complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="node"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="login" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="responseProduct" type="{SOAPMarketplace}responseProduct"/&gt;
+ *         &lt;element name="responseBid" type="{SOAPMarketplace}responseBid"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,64 +35,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "login",
-    "password"
+@XmlType(name = "node", propOrder = {
+    "responseProduct",
+    "responseBid"
 })
-@XmlRootElement(name = "authorizationRequest")
-public class AuthorizationRequest {
+public class Node {
 
     @XmlElement(required = true)
-    protected String login;
+    protected ResponseProduct responseProduct;
     @XmlElement(required = true)
-    protected String password;
+    protected ResponseBid responseBid;
 
     /**
-     * Gets the value of the login property.
+     * Gets the value of the responseProduct property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ResponseProduct }
      *     
      */
-    public String getLogin() {
-        return login;
+    public ResponseProduct getResponseProduct() {
+        return responseProduct;
     }
 
     /**
-     * Sets the value of the login property.
+     * Sets the value of the responseProduct property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ResponseProduct }
      *     
      */
-    public void setLogin(String value) {
-        this.login = value;
+    public void setResponseProduct(ResponseProduct value) {
+        this.responseProduct = value;
     }
 
     /**
-     * Gets the value of the password property.
+     * Gets the value of the responseBid property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ResponseBid }
      *     
      */
-    public String getPassword() {
-        return password;
+    public ResponseBid getResponseBid() {
+        return responseBid;
     }
 
     /**
-     * Sets the value of the password property.
+     * Sets the value of the responseBid property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ResponseBid }
      *     
      */
-    public void setPassword(String value) {
-        this.password = value;
+    public void setResponseBid(ResponseBid value) {
+        this.responseBid = value;
     }
 
 }

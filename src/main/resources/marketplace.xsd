@@ -1,6 +1,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="SOAPMarketplace"
            targetNamespace="SOAPMarketplace" elementFormDefault="qualified">
 
+
     <xs:element name="authorizationRequest">
         <xs:complexType>
             <xs:sequence>
@@ -17,6 +18,58 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="generalRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="findBy" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="generalResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="products" type="tns:listOfNode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="billingAddress" type="xs:string"/>
+            <xs:element name="login" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="role" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="responseBid">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="count" type="xs:double"/>
+            <xs:element name="userId" type="xs:long"/>
+            <xs:element name="productId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="node">
+        <xs:sequence>
+            <xs:element name="responseProduct" type="tns:responseProduct"/>
+            <xs:element name="responseBid" type="tns:responseBid"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="listOfNode">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="nodes" type="tns:node"/>
+        </xs:sequence>
+    </xs:complexType>
 
 
     <xs:element name="getCountryRequest">
@@ -51,4 +104,20 @@
             <xs:enumeration value="PLN"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="responseProduct">
+        <xs:sequence>
+            <xs:element name="uID" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="startPrice" type="xs:double"/>
+            <xs:element name="startBiddingDate" type="xs:long"/>
+            <xs:element name="time" type="xs:long"/>
+            <xs:element name="step" type="xs:int"/>
+            <xs:element name="buyNow" type="xs:int"/>
+            <xs:element name="sellerID" type="xs:long"/>
+            <xs:element name="sold" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>
