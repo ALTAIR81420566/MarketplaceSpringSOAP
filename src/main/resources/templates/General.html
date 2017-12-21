@@ -46,11 +46,11 @@
         <div class="row">
             <form method="get" action="/general">
                 <div class="col-2 col-md-3 ">
-                    <p><input maxlength="25" size="35" name="searchText" value="${fn:escapeXml(general.searchText)}">
+                    <p><input maxlength="25" size="35">
                     </p>
                 </div>
                 <div class="col-6 col-md-1">
-                    <select name="findBy" value="${fn:escapeXml(general.findBy)}">
+                    <select name="findBy">
                         <option>Title</option>
                         <option>uId</option>
                         <option>Description</option>
@@ -101,6 +101,10 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/date.format.js"></script>
+
 <script src="js/bootstrap.js"></script>
 <script src="js/GeneralPage.js"></script>
 </body>

@@ -50,10 +50,13 @@ $(document).ready(function () {
             }
         },
         'processSuccess': function (data, status, req) {
-            $.cookie("login", $('#login').val());
-            window.location.href = '/general';
-            $(".errorText").text($(req.responseXML).find("response").text());
-
+            var response = $(req.responseXML).find("response").text();
+            if(response == "success"){
+                $.cookie("login", $('#login').val());
+                window.location.href = '/general';
+            }else{
+                $(".errorText").text($(req.responseXML).find("response").text());
+            }
         },
         'processError': function (data, status, req) {
             $('.errorText').text("errorErrr");
