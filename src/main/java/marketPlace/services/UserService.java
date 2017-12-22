@@ -17,4 +17,8 @@ public class UserService {
         User user = repo.findByLogin(login);
         return user;
     }
+
+    public void save(User user) {
+        repo.save(user);
+    }
 }

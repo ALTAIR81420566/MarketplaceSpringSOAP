@@ -61,17 +61,39 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="addProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="description" type="xs:string"/>
+                <xs:element name="startPrice" type="xs:int"/>
+                <xs:element name="time" type="xs:long"/>
+                <xs:element name="step" type="xs:long"/>
+                <xs:element name="login" type="xs:string"/>
+                <xs:element name="buyItNow" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
-    <xs:complexType name="user">
+
+    <xs:element name="registerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="billingAddress" type="xs:string"/>
+                <xs:element name="login" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registerResponse">
+    <xs:complexType>
         <xs:sequence>
-            <xs:element name="id" type="xs:string"/>
-            <xs:element name="name" type="xs:string"/>
-            <xs:element name="billingAddress" type="xs:string"/>
-            <xs:element name="login" type="xs:string"/>
-            <xs:element name="password" type="xs:string"/>
-            <xs:element name="role" type="xs:string"/>
+            <xs:element name="response" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+    </xs:element>
 
 
     <xs:complexType name="responseBid">

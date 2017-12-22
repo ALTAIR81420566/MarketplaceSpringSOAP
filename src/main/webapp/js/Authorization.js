@@ -86,16 +86,6 @@ $(document).ready(function () {
                </soapenv:Body>\
            </soapenv:Envelope>';
 
-    //     var soapRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"\
-    //                                          				  xmlns:gs="SOAPMarketplace">\
-    // <soapenv:Header/>\
-    //     <soapenv:Body>\
-    //     <gs:getCountryRequest>\
-    //     <gs:name>Spain</gs:name>\
-    //     </gs:getCountryRequest>\
-    //     </soapenv:Body>\
-    //     </soapenv:Envelope>';
-
         $.ajax({
             type: "POST",
             url: wsUrl,

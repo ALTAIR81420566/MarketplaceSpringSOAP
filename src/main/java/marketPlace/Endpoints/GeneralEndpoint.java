@@ -73,7 +73,7 @@ public class GeneralEndpoint {
         } else {
             diff = (long) (request.getCount() - product.getStartPrice());
         }
-        if (diff >= product.getStep()) {
+        if (diff > product.getStep()) {
             bidService.saveRequest(request, user.getId());
             bidResponse.setStatus("OK");
         } else {
