@@ -3,6 +3,8 @@ package marketPlace.services;
 import marketPlace.model.Bid;
 import marketPlace.repositories.BidRepo;
 import org.springframework.stereotype.Service;
+import soapmarketplace.BidRequest;
+import soapmarketplace.BidResponse;
 import soapmarketplace.ResponseBid;
 
 @Service
@@ -28,5 +30,13 @@ public class BidService {
 
     public Bid getBestBid(Long aLong) {
         return bidRepo.getBestBid(aLong);
+    }
+
+    public void saveRequest(BidRequest bidRequest, Long userId) {
+        Bid bid = new Bid();
+        bid.setCount(bidRequest.getCount());
+        bid.setProductId(bidRequest.getProductId());
+        bid.setUserId(userId);
+        bidRepo.save(bid);
     }
 }

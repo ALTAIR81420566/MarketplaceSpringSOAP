@@ -106,6 +106,7 @@ $(document).ready(function () {
             error: jVal.processError
         });
     });
+    $.cookie("login", null);
 
 });
 

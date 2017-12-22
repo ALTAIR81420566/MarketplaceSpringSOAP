@@ -32,4 +32,13 @@ public class ProductService {
         responseProduct.setTitle(product.getTitle());
         return responseProduct;
     }
+
+    public Product findById(long productId) {
+        Product product = productRepo.findByuID(productId);
+        return product;
+    }
+
+    public void save(Product product) {
+        productRepo.save(product);
+    }
 }
