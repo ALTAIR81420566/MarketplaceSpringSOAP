@@ -1,7 +1,6 @@
 $(document).ready(function () {
     var bidBtn;
     var count;
-    var findBy = "All";
     jGeneral = {
 
         'initialize': function () {
@@ -13,10 +12,9 @@ $(document).ready(function () {
                                              				  xmlns:gs="SOAPMarketplace">\
             <soapenv:Header/>\
               <soapenv:Body>\
-                <gs:generalRequest>\
-                  <gs:findBy>' + findBy + '</gs:findBy>\
-                  <gs:searchStr>' + $('#searchStr').val() + '</gs:searchStr>\
-                </gs:generalRequest>\
+                <gs:myProductsRequest>\
+                  <gs:login>'+$.cookie("login")+'</gs:login>\
+                </gs:myProductsRequest>\
                </soapenv:Body>\
            </soapenv:Envelope>';
 
@@ -34,7 +32,7 @@ $(document).ready(function () {
         },
         'bidSuccess': function (data, status, req) {
             var status = $(req.responseXML).find("status").text();
-            if (status == "OK") {
+            if(status == "OK"){
                 bidBtn.text(count);
             }
         },
@@ -44,6 +42,7 @@ $(document).ready(function () {
                 Date.prototype.format = function (mask, utc) {
                     return dateFormat(this, mask, utc);
                 };
+
 
                 var stopDate = new Date(Number($(this).find("startBiddingDate").text()) + Number($(this).find("time").text()));
                 var appendStr = '<tr><td>' + $(this).find("uID").text() + '</td>' +
@@ -57,50 +56,26 @@ $(document).ready(function () {
                     '<td>' + $(this).find("userId").text() + '</td>';
 
                 if (Number($(this).find("sold").text()) == 1) {
-                    appendStr = appendStr + '<td>SOLD</td></tr>';
+                    appendStr = appendStr + '<td>SOLD  <button class="delete">Delete</button></td></tr>';
                 } else if (stopDate.getTime() < Date.now()) {
-                    appendStr = appendStr + '<td>Time is over</td></tr>';
-                } else if (Number($(this).find("buyNow").text()) == 1) {
-                    appendStr = appendStr + '<td><button id="buyNowBtn" type ="submit"  class="buyNow">Buy now</button></td></tr>';
-                } else {
-                    appendStr = appendStr + '<td><input maxlength="10" size="5" type="number" class="count">' +
-                        ' <button type ="submit" class="bid">Bid</button></td></tr>'
+                    appendStr = appendStr + '<td>Time is over  <button class="delete">Delete</button></td></tr>';
+                } else{
+                    appendStr = appendStr + '<td><button class="edit">Edit</button>  <button class="delete">Delete</button></td></tr>';
                 }
 
                 $('#productTable').append(appendStr);
-
             });
 
-            if ($.cookie("role") == "GUEST") {
-                $(".buyNow").hide();
-                $(".bid").hide();
-                $("#addBtn").hide();
-                $("#myProdBtn").hide();
-                $(".count").hide();
-            }
-            alert("after");
-            $('#searchBtn').on('click', function () {
-
-                var tbl = document.getElementById("productTable")
-                var trs = tbl.rows;
-                alert(trs.length + " ");
-                for (var i = 1; i < trs.length;) {
-                    tbl.deleteRow(i)
-                }
-                findBy = $('#findBy').val();
-                jGeneral.initialize();
-            });
-
-            $('.buyNow').on('click', function () {
+            $('.delete').on('click', function () {
                 var wsUrl = "http://localhost:8090/ws";
 
                 var soapRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"\
                                              				  xmlns:gs="SOAPMarketplace">\
             <soapenv:Header/>\
               <soapenv:Body>\
-                <gs:buyBidRequest>\
+                <gs:deleteProdRequest>\
                   <gs:productId>' + Number($(this).parent().parent().find("td:eq(0)").text()) + '</gs:productId>\
-                </gs:buyBidRequest>\
+                </gs:deleteProdRequest>\
                </soapenv:Body>\
            </soapenv:Envelope>';
 
@@ -113,37 +88,12 @@ $(document).ready(function () {
                     data: soapRequest,
                 });
 
-                $(this).parent().parent().append("<td>SOLD</td>");
-                $(this).parent().remove();
+                 $(this).parent().parent().remove();
             });
 
-            $('.bid').on('click', function () {
-                var wsUrl = "http://localhost:8090/ws";
-                var soapRequest = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"\
-                                     				  xmlns:gs="SOAPMarketplace">\
-            <soapenv:Header/>\
-              <soapenv:Body>\
-                <gs:bidRequest>\
-                  <gs:productId>' + Number($(this).parent().parent().find("td:eq(0)").text()) + '</gs:productId>\
-                  <gs:login>' + $.cookie("login") + '</gs:login>\
-                  <gs:count>' + Number($(this).parent().parent().find("td:eq(9)").find("input:eq(0)").val()) + '</gs:count>\
-                </gs:bidRequest>\
-               </soapenv:Body>\
-           </soapenv:Envelope>';
-
-
-                $.ajax({
-                    type: "POST",
-                    url: wsUrl,
-                    contentType: "text/xml",
-                    dataType: "xml",
-                    data: soapRequest,
-                    success: jGeneral.bidSuccess
-                });
-                bidBtn = $(this).parent().parent().find("td:eq(7)");
-                count = $(this).parent().parent().find("td:eq(9)").find("input:eq(0)").val();
-                // $(this).parent().parent().append("<td>SOLD</td>");
-                // $(this).parent().remove();
+            $('.edit').on('click', function () {
+                $.cookie("editID",Number($(this).parent().parent().find("td:eq(0)").text()));
+                window.location.href = '/add';
             });
 
         },

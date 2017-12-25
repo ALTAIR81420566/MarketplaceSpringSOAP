@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="response" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="login" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "response"
+    "login"
 })
-@XmlRootElement(name = "registerResponse")
-public class RegisterResponse {
+@XmlRootElement(name = "myProductsRequest")
+public class MyProductsRequest {
 
     @XmlElement(required = true)
-    protected String response;
+    protected String login;
 
     /**
-     * Gets the value of the response property.
+     * Gets the value of the login property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getResponse() {
-        return response;
+    public String getLogin() {
+        return login;
     }
 
     /**
-     * Sets the value of the response property.
+     * Sets the value of the login property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setResponse(String value) {
-        this.response = value;
+    public void setLogin(String value) {
+        this.login = value;
     }
 
 }

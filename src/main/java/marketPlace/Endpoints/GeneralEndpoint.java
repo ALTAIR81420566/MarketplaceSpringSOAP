@@ -12,6 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import soapmarketplace.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Endpoint
@@ -37,18 +38,35 @@ public class GeneralEndpoint {
 
         if (request.getFindBy().equals("All")) {
             Iterable<Product> products = productService.findAll();
-            products.forEach(product -> {
-                Bid bid = bidService.getBestBid(product.getuID());
-                Node node = new Node();
-                node.setResponseBid(bidService.getResponse(bid));
-                node.setResponseProduct(productService.getResponseProduct(product));
-                nodes.add(node);
-            });
+            makeProducts(nodes,products);
+        }else if (request.getFindBy().equals("Title")) {
+            Iterable<Product> products = productService.findByTitle(request.getSearchStr());
+            makeProducts(nodes,products);
+        }else if (request.getFindBy().equals("Description")) {
+            Iterable<Product> products = productService.findByDescription(request.getSearchStr());
+            makeProducts(nodes,products);
+        }else if(request.getFindBy().equals("uId")){
+            Product product =  productService.findByuId(request.getSearchStr());
+            Bid bid = bidService.getBestBid(product.getuID());
+            Node node = new Node();
+            node.setResponseBid(bidService.getResponse(bid));
+            node.setResponseProduct(productService.getResponseProduct(product));
+            nodes.add(node);
         }
 
         response.setProducts(listOfNode);
 
         return response;
+    }
+    private  List<Node> makeProducts( List<Node> nodes, Iterable<Product> products) {
+        products.forEach(product -> {
+            Bid bid = bidService.getBestBid(product.getuID());
+            Node node = new Node();
+            node.setResponseBid(bidService.getResponse(bid));
+            node.setResponseProduct(productService.getResponseProduct(product));
+            nodes.add(node);
+        });
+        return nodes;
     }
 
 

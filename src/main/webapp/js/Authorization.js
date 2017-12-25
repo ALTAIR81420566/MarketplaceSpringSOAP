@@ -40,6 +40,7 @@ $(document).ready(function () {
                 return false;
             } else if (ele.val() == name.val()) {
                 jVal.errors = true;
+                jVal.errors = true;
                 info.removeClass('correct').addClass('error').html('← must not be the same as the full name').show();
                 ele.removeClass('normal').addClass('wrong');
                 return false;
@@ -53,6 +54,7 @@ $(document).ready(function () {
             var response = $(req.responseXML).find("response").text();
             if(response == "success"){
                 $.cookie("login", $('#login').val());
+                $.cookie("role", "USER");
                 window.location.href = '/general';
             }else{
                 $(".errorText").text($(req.responseXML).find("response").text());
@@ -70,6 +72,12 @@ $(document).ready(function () {
         $('#soap').text("ok");
     });
 
+    $('#guestBtn').on('click', function (e) {
+        e.preventDefault();
+        $.cookie("login", "guest");
+        $.cookie("role", "GUEST");
+        window.location.href = "/general"
+    });
 
     $('#signInBtn').on('click', function (e) {
         e.preventDefault();
@@ -97,6 +105,6 @@ $(document).ready(function () {
         });
     });
     $.cookie("login", null);
-
+    $.cookie("role", "GUEST");
 });
 

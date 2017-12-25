@@ -92,9 +92,14 @@ $(document).ready(function () {
     $('#publishBtn').on('click', function (e) {
         e.preventDefault();
         if (jVal.title() && jVal.startPrice() && jVal.timeLeft()) {
-            var buyNow = false;
+            var buyNow = 0;
             if ($("#buyItNowCheckBox").is(':checked')) {
-                buyNow = true;
+                buyNow = 1;
+            }
+            if($.cookie("editID") != null){
+                var id = $.cookie("editID");
+            }else{
+                id = 0;
             }
 
             var wsUrl = "http://localhost:8090/ws";
@@ -103,6 +108,7 @@ $(document).ready(function () {
             <soapenv:Header/>\
               <soapenv:Body>\
                 <gs:addProductRequest>\
+                  <gs:uId>' + id + '</gs:uId>\
                   <gs:title>' + $('#title').val() + '</gs:title>\
                   <gs:description>' + $('#description').val() + '</gs:description>\
                   <gs:startPrice>' + $('#startPrice').val() + '</gs:startPrice>\
@@ -122,6 +128,8 @@ $(document).ready(function () {
                 data: soapRequest,
                 success: jVal.processSuccess
             });
+            $.cookie("editID", null);
+            window.location.href = '/general';
         }
     });
 });

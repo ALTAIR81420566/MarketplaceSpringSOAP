@@ -41,4 +41,24 @@ public class ProductService {
     public void save(Product product) {
         productRepo.save(product);
     }
+
+    public Iterable<Product> findByLogin(String login) {
+        return productRepo.findByLogin(login);
+    }
+
+    public void delete(Long productId) {
+        productRepo.delete(productId);
+    }
+
+    public Iterable<Product> findByTitle(String title) {
+        return productRepo.findByTitleContaining(title);
+    }
+
+    public Iterable<Product> findByDescription(String description) {
+        return productRepo.findByDescriptionContaining(description);
+    }
+
+    public Product findByuId(String uId) {
+        return productRepo.findByuID(Long.parseLong(uId));
+    }
 }

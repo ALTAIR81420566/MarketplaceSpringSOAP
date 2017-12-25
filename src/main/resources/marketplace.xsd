@@ -19,10 +19,27 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="myProductsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="login" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteProdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="generalRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="findBy" type="xs:string"/>
+                <xs:element name="searchStr" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -64,6 +81,7 @@
     <xs:element name="addProductRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="uId" type="xs:int"/>
                 <xs:element name="title" type="xs:string"/>
                 <xs:element name="description" type="xs:string"/>
                 <xs:element name="startPrice" type="xs:int"/>

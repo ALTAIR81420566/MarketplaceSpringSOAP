@@ -28,6 +28,9 @@ public class AddEndpoint {
     public void addProduct(@RequestPayload AddProductRequest request) {
         User user =  userService.getByLogin(request.getLogin());
         Product product = new Product();
+        if(request.getUId() > 0){
+            product.setuID(request.getUId());
+        }
         product.setStartPrice(request.getStartPrice());
         product.setDescription(request.getDescription());
         product.setTitle(request.getTitle());

@@ -44,22 +44,20 @@
     <div class="row justify-content-md-center">
 
         <div class="row">
-            <form method="get" action="/general">
                 <div class="col-2 col-md-3 ">
-                    <p><input maxlength="25" size="35">
+                    <p><input maxlength="25" size="35" id="searchStr">
                     </p>
                 </div>
                 <div class="col-6 col-md-1">
-                    <select name="findBy">
+                    <select name="findBy" id="findBy">
                         <option>Title</option>
                         <option>uId</option>
                         <option>Description</option>
                     </select>
                 </div>
                 <div class="col-2 col-md-1 ">
-                    <button id="searchBtn" type="submit">Search</button>
+                    <button id="searchBtn">Search</button>
                 </div>
-            </form>
             <div class="col-6 col-md-3">
                 <if test="${!user.role.equals('guest')}">
                     <div class="col-2 col-md-6 ">
@@ -68,7 +66,7 @@
                         </form>
                     </div>
                     <div class="col-5 col-md-6 ">
-                        <button type="submit" onclick="window.location.href='/my_product'">My products</button>
+                        <button type="submit" onclick="window.location.href='/myproducts'" id="myProdBtn">My products</button>
                     </div>
                 </if>
             </div>
