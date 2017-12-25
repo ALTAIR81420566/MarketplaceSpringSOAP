@@ -13,6 +13,8 @@ import soapmarketplace.AuthorizationResponse;
 @Endpoint
 public class AuthorizationEndpoint {
     private static final String NAMESPACE_URI = "SOAPMarketplace";
+    private final String ERROR = "error";
+    private final String SUCCESS = "success";
 
     private final UserRepo userRepo;
 
@@ -26,9 +28,9 @@ public class AuthorizationEndpoint {
         AuthorizationResponse response = new AuthorizationResponse();
         User user = userRepo.findByLogin(request.getLogin());
         if (user != null && user.getPassword().equals(request.getPassword())){
-            response.setResponse("success");
+            response.setResponse(ERROR);
         }else{
-            response.setResponse("error");
+            response.setResponse(SUCCESS);
         }
         return response;
     }

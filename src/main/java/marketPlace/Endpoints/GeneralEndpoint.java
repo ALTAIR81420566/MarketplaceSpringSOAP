@@ -11,17 +11,21 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import soapmarketplace.*;
-
-import java.util.HashMap;
 import java.util.List;
 
 @Endpoint
 public class GeneralEndpoint {
     private static final String NAMESPACE_URI = "SOAPMarketplace";
+    private final String TITLE_PARAM = "Title";
+    private final String DESCRIPTION_PARAM = "Description";
+    private final String UID_PARAM = "uId";
+    private final String ALL_PARAM = "All";
 
     private final BidService bidService;
     private final ProductService productService;
     private final UserService userService;
+
+
 
     public GeneralEndpoint(BidService bidService, ProductService productService, UserService userService) {
         this.bidService = bidService;
@@ -36,16 +40,16 @@ public class GeneralEndpoint {
         ListOfNode listOfNode = new ListOfNode();
         List<Node> nodes = listOfNode.getNodes();
 
-        if (request.getFindBy().equals("All")) {
+        if (request.getFindBy().equals(ALL_PARAM)) {
             Iterable<Product> products = productService.findAll();
             makeProducts(nodes,products);
-        }else if (request.getFindBy().equals("Title")) {
+        }else if (request.getFindBy().equals(TITLE_PARAM)) {
             Iterable<Product> products = productService.findByTitle(request.getSearchStr());
             makeProducts(nodes,products);
-        }else if (request.getFindBy().equals("Description")) {
+        }else if (request.getFindBy().equals(DESCRIPTION_PARAM)) {
             Iterable<Product> products = productService.findByDescription(request.getSearchStr());
             makeProducts(nodes,products);
-        }else if(request.getFindBy().equals("uId")){
+        }else if(request.getFindBy().equals(UID_PARAM)){
             Product product =  productService.findByuId(request.getSearchStr());
             Bid bid = bidService.getBestBid(product.getuID());
             Node node = new Node();

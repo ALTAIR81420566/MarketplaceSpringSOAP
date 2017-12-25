@@ -15,20 +15,24 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
+	private static final String NAMESPACE_URI = "SOAPMarketplace";
+	private static final String LOCATION_URI = "/ws";
+	private static final String PORT_TYPE = "MarketplacePort";
+
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
 		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 		servlet.setApplicationContext(applicationContext);
 		servlet.setTransformWsdlLocations(true);
-		return new ServletRegistrationBean(servlet, "/ws/*");
+		return new ServletRegistrationBean(servlet, LOCATION_URI+"/*");
 	}
 
 	@Bean(name = "marketplace")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName("MarketplacePort");
-		wsdl11Definition.setLocationUri("/ws");
-		wsdl11Definition.setTargetNamespace("SOAPMarketplace");
+		wsdl11Definition.setPortTypeName(PORT_TYPE);
+		wsdl11Definition.setLocationUri(LOCATION_URI);
+		wsdl11Definition.setTargetNamespace(NAMESPACE_URI);
 		wsdl11Definition.setSchema(countriesSchema);
 		return wsdl11Definition;
 	}
